@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Work</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body onload="readData()">
+    
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li class="dropdown"><a href="Admin/DisplayData.html">View Data</a>
+      </li>
+      <li><a href="Admin/AddTask.html">Add Task</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="logIn.html"><span class="glyphicon glyphicon-log-in"></span><label id="emailId"> Login</label></a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container">
+
+    <div class="input-group">
+        <span class="input-group-addon">Email</span>
+        <input id="msg" type="text" class="form-control" name="msg" id = "msg" placeholder="Additional Info">
+      </div>
+      <br>
+    <div class="form-group">
+        <label for="sel1">Select Task:</label>
+        <select class="form-control" id="WorkListDropDown">
+          <option disabled>Select Task</option>
+        </select>
+      </div>
+    <button class="btn btn-primary" onclick="addData()">Add Task</button>
+</div>
+
+  
+
+ <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDeRkjGH5ZD83rufGFRe-KAbDFJ210zoYc",
+    authDomain: "work-acf7c.firebaseapp.com",
+    databaseURL: "https://work-acf7c.firebaseio.com",
+    projectId: "work-acf7c",
+    storageBucket: "work-acf7c.appspot.com",
+    messagingSenderId: "747724933455",
+    appId: "1:747724933455:web:6540c29f4d285da955dd3a",
+    measurementId: "G-MC89KXFLLW"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+
+<script>
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+           document.getElementById('emailId').innerText = "  " + user.email;
+           document.getElementById("msg").value = user.email;
+           document.getElementById("msg").disabled = true;
+        }
+      });
+</script>
+<script src="ReadData.js"></script>
+<script src="addTask.js"></script>
+
+</body>
+</html>
